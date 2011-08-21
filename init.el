@@ -67,6 +67,9 @@
 (global-set-key (kbd "C-c d f") 'delete-frame)
 (global-set-key (kbd "C-9") 'other-frame)
 
+;;find-file 時に大文字と小文字を区別しない
+(setq completion-ignore-case t)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; http://d.hatena.ne.jp/kitokitoki/20100608/p2
 ;; バッファの削除と復元を手軽に行える，小さなコードを書きました。以前どこかで見
@@ -107,14 +110,6 @@
 
   ;; 自動改行を有効にする
   (c-toggle-auto-state t)
-
-  ;; 連続する空白の一括削除を有効にする
-  ;; (c-toggle-hungry-state t)
-
-  ;; セミコロンで自動改行しない
-  ;; (setq c-hanging-semi&comma-criteria nil)
-  ;; (setq fill-column 80)
-  ;; (setq comment-column 60)
 
   ;; コンパイル時は強制的に保存する
   (setq compilation-ask-about-save nil)
