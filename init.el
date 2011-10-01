@@ -7,7 +7,7 @@
 (setq initial-frame-alist
       (append
        (list
-        '(width  . 45)
+        '(width  . 90)
         '(height . 30))
        initial-frame-alist))
 (setq default-frame-alist initial-frame-alist)
@@ -26,18 +26,17 @@
 (global-set-key (kbd "C-o") 'toggle-input-method)
 
 ;;パーレンを強調表示する
-(show-paren-mode t)
+(show-paren-mode 1)
 (setq show-paren-delay 0)
 (setq show-paren-style 'expression)
 (set-face-attribute 'show-paren-match-face nil
                     :background "#aaffff"
-                    :foreground nil
-                    :underline  nil
+                    :underline nil
                     :weight 'extra-bold)
-(setq kill-whole-line t)
-(column-number-mode t)
-(line-number-mode t)
-(which-function-mode t)
+(setq kill-whole-line 1)
+(column-number-mode 1)
+(line-number-mode 1)
+(which-function-mode 1)
 (setq delete-auto-save-files t)
 
 ;; 字下げにはタブを使用せずにスペースを使う
