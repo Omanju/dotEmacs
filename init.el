@@ -1,5 +1,14 @@
 ;; init.el
 
+; 言語を日本語にする
+(set-language-environment 'Japanese)
+
+; できるだけUTF−8とする
+(prefer-coding-system 'utf-8-unix)
+
+; 行数を左側に表示する
+(global-linum-mode t)
+
 ;;起動時のスタートアップ画面を無効にする
 (setq inhibit-startup-screen t)
 
@@ -13,10 +22,7 @@
 (setq default-frame-alist initial-frame-alist)
 
 ;;ウィンドウに関する設定
-(if window-system
-    (progn
-      (tool-bar-mode nil)
-      (set-scroll-bar-mode 'right)))
+(tool-bar-mode nil)
 
 ;;Delete と C-h を入れ替える
 (keyboard-translate ?\C-h ?\C-?)
@@ -53,12 +59,12 @@
   ""
   (interactive)
   (scroll-up 1))
-(global-set-key [wheel-up] 'scroll-up-with-lines)
-(global-set-key [double-wheel-up] 'scroll-up-with-lines)
-(global-set-key [triple-wheel-up] 'scroll-up-with-lines)
-(global-set-key [wheel-down] 'scroll-down-with-lines)
-(global-set-key [double-wheel-down] 'scroll-down-with-lines)
-(global-set-key [triple-wheel-down] 'scroll-down-with-lines)
+(global-set-key [wheel-up] 'scroll-down-with-lines)
+(global-set-key [double-wheel-up] 'scroll-down-with-lines)
+(global-set-key [triple-wheel-up] 'scroll-down-with-lines)
+(global-set-key [wheel-down] 'scroll-up-with-lines)
+(global-set-key [double-wheel-down] 'scroll-up-with-lines)
+(global-set-key [triple-wheel-down] 'scroll-up-with-lines)
 ;; スクロールステップ1に設定
 (setq scroll-step 1)
 
@@ -122,3 +128,46 @@
 (setq auto-mode-alist (append
 		       '(("\\.h$" . c++-mode))
 		       auto-mode-alist))
+
+(when window-system
+  (cond
+   ((<= emacs-major-version 21)
+    (message "Emacs Major Version is less than 21"))
+   
+   ((=  emacs-major-version 22)
+    (message "Emacs Major Version is 22"))
+
+   ((>= emacs-major-version 23)
+    (message "Emacs Major Version is greater than 23")
+    (let (my-font-height my-font my-font-ja my-font-size my-fontset my-font-kana)
+      ;; ツールバーを非表示にする
+      (tool-bar-mode 0)
+
+      ;;OS と Emacs のバージョンによって使用するフォントを変更する
+      (cond
+
+       ;; Cocoa Emacs のとき
+       ((eq window-system 'ns)
+        (setq mac-allow-anti-aliasing t)
+        (setq my-font-height 120)
+        (setq my-font "Menlo")
+        (setq my-font-kana "Mio W4")
+        (setq my-font-ja "Hiragino Maru Gothic Pro")
+        ))
+
+      ;; フォントの設定を行う
+      (cond
+       (my-font
+        (set-face-attribute 'default nil
+                            :family my-font
+                            :height my-font-height)))
+
+      ;; 日本語の設定を行う
+      (when my-font-ja
+        (let ((fn (or my-fontset (frame-parameter nil 'font)))
+              (rg "iso10646-1"))
+          (set-fontset-font fn 'katakana-jisx0201 `(,my-font-kana . ,rg))
+          (set-fontset-font fn 'japanese-jisx0208 `(,my-font-ja . ,rg))
+          (set-fontset-font fn 'japanese-jisx0212 `(,my-font-ja . ,rg))
+              )))
+      )))
