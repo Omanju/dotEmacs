@@ -21,15 +21,15 @@
        initial-frame-alist))
 (setq default-frame-alist initial-frame-alist)
 
-;;ウィンドウに関する設定
-(tool-bar-mode nil)
-
 ;;Delete と C-h を入れ替える
 (keyboard-translate ?\C-h ?\C-?)
 (keyboard-translate ?\C-? ?\C-h)
 
 ;;IMEを切替える
 (global-set-key (kbd "C-o") 'toggle-input-method)
+
+;; ビープ音を抑制する
+(setq visible-bell t)
 
 ;;パーレンを強調表示する
 (show-paren-mode 1)
@@ -129,6 +129,8 @@
 		       '(("\\.h$" . c++-mode))
 		       auto-mode-alist))
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; ウィンドウに関する設定
 (when window-system
   (cond
    ((<= emacs-major-version 21)
