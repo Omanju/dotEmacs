@@ -9,6 +9,9 @@
 ; 行数を左側に表示する
 (global-linum-mode t)
 
+; バックアップファイルを作らない
+(setq make-backup-files nil)
+
 ;;起動時のスタートアップ画面を無効にする
 (setq inhibit-startup-screen t)
 
@@ -198,15 +201,28 @@
       )))
 
 ;;; auto-complete mode の設定
-(setq ac-dir "auto-complete-1.3.1/")
-(add-to-list 'load-path ac-dir)
-(require 'auto-complete-config)
+;; (setq ac-dir "auto-complete-1.3.1/")
+;; (add-to-list 'load-path ac-dir)
+;; (require 'auto-complete-config)
 
-(add-to-list 'ac-dictionary-directories (concat ac-dir "ac-dict/"))
-(global-set-key (kbd "M-/") 'ac-start)
+;; (add-to-list 'ac-dictionary-directories (concat ac-dir "ac-dict/"))
+;; (require 'auto-complete-clang)
+;; (defun my-ac-cc-mode-setup ()
+;;   (setq ac-clang-prefix-header "stdafx.pch")
+;;   (setq ac-auto-start nil)
+;;   (setq ac-clang-flags '("-w" "-ferror-limit" "1"))
+;;   (setq ac-sources (append '(ac-source-clang
+;;                              ac-source-yasnippet
+;;                              ac-source-gtags)
+;;                            ac-sources)))
+;; (defun my-ac-config ()
+;;   (global-set-key (kbd "M-/") 'ac-start)
+;;   (define-key ac-complete-mode-map (kbd "C-n") 'ac-next)
+;;   (define-key ac-complete-mode-map (kbd "C-p") 'ac-previous)
+;;   (add-hook 'emacs-lisp-mode-hook 'ac-emacs-lisp-mode-setup)
+;;   (add-hook 'c-mode-common-hook 'my-ac-cc-mode-setup)
+;;   (add-hook 'auto-complete-mode-hook 'ac-common-setup)
+;;   (global-auto-complete-mode t))
 
-(define-key ac-complete-mode-map (kbd "C-n") 'ac-next)
-(define-key ac-complete-mode-map (kbd "C-p") 'ac-previous)
-
-(global-auto-complete-mode t)
+;; (my-ac-config)
 
