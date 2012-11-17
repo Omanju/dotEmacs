@@ -20,7 +20,7 @@
       (append
        (list
         '(width  . 90)
-        '(height . 30))
+        '(height . 50))
        initial-frame-alist))
 (setq default-frame-alist initial-frame-alist)
 
@@ -199,6 +199,26 @@
           (set-fontset-font fn 'japanese-jisx0212 `(,my-font-ja . ,rg))
               )))
       )))
+
+;; package.el に関する設定
+(require 'package)
+
+; パッケージアーカイブを追加
+(add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
+(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/") t)
+
+; 初期化
+(package-initialize)
+
+; melpa.el
+(require 'melpa)
+
+;; anything.el
+(add-to-list 'load-path "~/.emacs.d/elpa/anything-1.287/")
+(require 'anything)
+(require 'anything-config)
+(global-set-key (kbd "C-x b") 'anything-for-files)
+
 
 ;;; auto-complete mode の設定
 ;; (setq ac-dir "auto-complete-1.3.1/")
