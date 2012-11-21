@@ -136,7 +136,7 @@
   (setq c-hanging-braces-alist
         '(
           (class-open before after)
-;          (class-close after)
+          (class-close before )
           (defun-open before)
           (defun-close before)
           (block-open before after)
@@ -166,7 +166,7 @@
     (message "Emacs Major Version is 22"))
 
    ((>= emacs-major-version 23)
-    (message "Emacs Major Version is greater than 23")
+    (message "Emacs Major Version is 23 or more.")
     (let (my-font-height my-font my-font-ja my-font-size my-fontset my-font-kana)
       ;; ツールバーを非表示にする
       (tool-bar-mode 0)
@@ -221,9 +221,10 @@
 
 
 ;;; auto-complete mode の設定
-;; (setq ac-dir "auto-complete-1.3.1/")
-;; (add-to-list 'load-path ac-dir)
-;; (require 'auto-complete-config)
+(add-to-list 'load-path "auto-complete-1.3.1/")
+(require 'auto-complete-config)
+(add-to-list 'ac-dictionary-directories "~/.emacs.d/elisp/ac-dict")
+(ac-config-default)
 
 ;; (add-to-list 'ac-dictionary-directories (concat ac-dir "ac-dict/"))
 ;; (require 'auto-complete-clang)
