@@ -22,7 +22,6 @@
 (require 'anything-config)
 (global-set-key (kbd "C-x b") 'anything-for-files)
 
-
 ;;; auto-complete mode の設定
 (add-to-list 'load-path "~/.emacs.d/elpa/auto-complete-1.3.1/")
 (require 'auto-complete-config)
@@ -32,6 +31,10 @@
 ;;; magit の設定
 (add-to-list 'load-path "~/.emacs.d/elpa/magit-20130611.2010")
 (require 'magit)
+
+;; Enable LLVM Mode
+(add-to-list 'load-path "~/.emacs.d")
+(require 'llvm-mode)
 
 ;; (add-to-list 'ac-dictionary-directories (concat ac-dir "ac-dict/"))
 ;; (require 'auto-complete-clang)
