@@ -36,6 +36,11 @@
 (add-to-list 'load-path "~/.emacs.d")
 (require 'llvm-mode)
 
+;; auto-async-byte-compile
+(require 'auto-async-byte-compile)
+(setq auto-async-byte-compile-exclude-files-regexp "/junk/")
+(add-hook 'emacs-lisp-mode-hook 'enable-auto-async-byte-compile-mode)
+
 ;; (add-to-list 'ac-dictionary-directories (concat ac-dir "ac-dict/"))
 ;; (require 'auto-complete-clang)
 ;; (defun my-ac-cc-mode-setup ()
