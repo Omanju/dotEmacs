@@ -1,4 +1,3 @@
-
 This extension provides a way to complete with popup menu like:
 
     def-!-
