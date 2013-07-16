@@ -104,7 +104,7 @@ ____________________________
   (my-sample-output
    "*sample-face*"
    (mapcar
-    '(lambda (e) (list (format "height %g pt" e)
+    #'(lambda (e) (list (format "height %g pt" e)
 		       (intern (format "my-sample-face-%g" e))))
     my-sample-face-size-list)
    my-sample-face-str))
